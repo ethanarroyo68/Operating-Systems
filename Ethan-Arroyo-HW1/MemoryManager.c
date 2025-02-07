@@ -74,18 +74,22 @@ int get_running_count(int running_count)
     int *arr;
     int iterations = get_iteration_count(rand());
     int arrSize;
-    int mediansDivisible = 0;
+    int mediansDivisible = 0; // Divisible by 13, specifically
 
+    // For each iteration
     for (int i = 0; i < iterations; i++)
     {
         arrSize = get_arr_size(rand());
+        // Allocate memory on the heap for the given size of the array
         arr = (int *)malloc(arrSize * sizeof(int));
 
+        // For every entry in the array assign a random number
         for (int n = 0; n < arrSize; n++)
         {
             arr[n] = rand();
         }
 
+        // If the median number in the array is divisble, increment the count
         if ((return_median(arr, arrSize) % 13) == 0)
         {
             mediansDivisible++;
