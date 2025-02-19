@@ -14,31 +14,34 @@ int main(int argc, char *argv[])
         numbers[i - 1] = argv[i];
     }
 
-    pid_t pid = fork();
-
-    if (pid == -1)
+    for (int i = 0; i < 4; i++)
     {
-        printf("Fork() failed.\n");
-    }
+        pid_t pid = fork();
 
-    // Child process handling
-    else if (pid == 0)
-    {
-        execlp("checker", "checker", numbers[0], numbers[1], NULL);
-    }
+        if (pid == -1)
+        {
+            printf("Fork() failed.\n");
+        }
 
-    // Parent process handling
-    else
-    {
-        printf("Coordinator: forked process with ID %d.\n", getpid());
-        printf("Coordinator: waiting for process [%d].\n", getpid());
+        // Child process handling
+        else if (pid == 0)
+        {
+            execlp("checker", "checker", numbers[0], numbers[i + 1], NULL);
+        }
 
-        // Wait for child process to finish
-        int status;
-        waitpid(pid, &status, 0);
+        // Parent process handling
+        else
+        {
+            printf("Coordinator: forked process with ID %d.\n", getpid());
+            printf("Coordinator: waiting for process [%d].\n", getpid());
 
-        int result = WEXITSTATUS(status);
-        printf("Coordinator: child process %d returned %d.\n", pid, result);
+            // Wait for child process to finish
+            int status;
+            waitpid(pid, &status, 0);
+
+            int result = WEXITSTATUS(status);
+            printf("Coordinator: child process %d returned %d.\n", pid, result);
+        }
     }
 
     return 0;
