@@ -30,4 +30,4 @@ clean:
 	rm -f *.o *- $(EXE1) $(EXE2)
 
 package:
-	zip -r Ethan-Arroyo-HW2.xip coordinator.c checker.c Makefile
+	zip -r Ethan-Arroyo-HW2.xip coordinator.c checker.c Makefile README.txt

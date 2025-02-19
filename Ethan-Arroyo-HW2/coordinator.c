@@ -21,12 +21,18 @@ int main(int argc, char *argv[])
         if (pid == -1)
         {
             printf("Fork() failed.\n");
+            exit(1);
         }
 
         // Child process handling
-        else if (pid == 0)
+        else if (pid == 0) // Child process
         {
-            execlp("checker", "checker", numbers[0], numbers[i + 1], NULL);
+            if (execlp("checker", "checker", numbers[0], numbers[i + 1], NULL) == -1)
+            {
+                perror("execlp failed");
+                exit(2); // Child exits if execlp fails
+            }
+            exit(0); // Just in case (though not needed if execlp works)
         }
 
         // Parent process handling
