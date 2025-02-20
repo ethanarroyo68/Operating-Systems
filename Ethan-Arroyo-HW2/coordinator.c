@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
         // Child process handling
         else if (pid == 0) // Child process
         {
-            if (execlp("checker", "checker", numbers[0], numbers[i + 1], NULL) == -1)
+            if (execlp("./checker", "checker", numbers[0], numbers[i + 1], NULL) == -1)
             {
                 perror("execlp failed");
                 exit(2); // Child exits if execlp fails
@@ -38,8 +38,8 @@ int main(int argc, char *argv[])
         // Parent process handling
         else
         {
-            printf("Coordinator: forked process with ID %d.\n", getpid());
-            printf("Coordinator: waiting for process [%d].\n", getpid());
+            printf("Coordinator: forked process with ID %d.\n", pid);
+            printf("Coordinator: waiting for process [%d].\n", pid);
 
             // Wait for child process to finish
             int status;
