@@ -1,0 +1,100 @@
+﻿1 Description of Task
+In this assignment you will be implementing several basic CPU scheduling algorithms.
+Information about the processes that must be scheduled including the number of processes,
+their start times, and burst durations are provided in a separate file.
+You will be implementing following CPU scheduling algorithms using C or C++ with the
+assumption that all jobs are CPU bound i.e. they do not block for I/O:
+• First Come First Serve (FCFS) [Non-preemptive] 3 points
+• Shortest Job First (SJF) [Preemptive] 4 points
+• Priority Scheduling [Preemptive] 3 points
+You will profile the performance of these algorithms by tracking several measures of
+effectiveness such as average turnaround time, average waiting time, and throughput. The
+turnaround time for a process is the difference between a job’s submission and completion
+times. The average turnaround time reports the average turnaround time for the set of
+processes that were scheduled. The waiting time for a process reflects the total amount of
+time spent by that process in the ready queue. The average waiting time reports the average
+waiting time for the set of processes that were scheduled. The throughput for a scheduling
+algorithm measures the total number of tasks processes that completed per unit of time.
+Page 3 of 4
+2 Requirements of Task
+1. You need to read the list of processes for your scheduling algorithms from a file. Every
+line in this file includes a record with comma separated fields. The format for this record
+is the following: <ProcessID>,<Arrival Time>, <Burst Duration>, <Priority>. Not all
+fields are used by all scheduling algorithms. For example, for FCFS you only need the
+process IDs, arrival times, and burst durations. All processes in your input files will be
+provided a unique process ID. The arrival times and burst durations are integers. Process
+priorities have a range of [1-50]; the lower this number, the higher the priority i.e. a
+process with priority=1 has a higher priority than a process with priority=2.
+2. Implement FCFS (non-preemptive) and report average turnaround time, average waiting
+time, and throughput.
+3. Implement SJF (preemptive) and report average turnaround time, average waiting time,
+and throughput.
+4. Implement priority scheduling (preemptive) and report average turnaround time, average
+waiting time, and throughput.
+3 Command line arguments for grading:
+> ./Scheduler <input_filename>
+The input_filename contains information about the processes that need to be scheduled.
+CS 370: OPERATING SYSTEMS
+Department of Computer Science
+Colorado State University
+4 What to Submit
+Use the CS370 Canvas to submit a single .zip file that contains:
+• All .c and .h files related to the assignment (please document your code),
+• Please use the Makefile provided on the assignments page for this assignment
+• A README.txt file containing a description of each file and any information you feel
+the grader needs to grade your program.
+Filename Convention: The main file must be named Scheduler.c; any additional .c and .h
+files can be named anything you want. The archive file should be named as <LastName>-
+<FirstName>-HW5.zip. E.g. if you are Cameron Doe and submitting for HW5, then the zip file
+should be named Doe-Cameron-HW5.zip.
+5 Grading
+This assignment would contribute a maximum of 10 points towards your final grade. The
+grading will also be done on a 10-point scale. The points are broken up as follows:
+• 3 points for implementing FCFS
+• 4 points for implementing SJF [preemptive]
+• 3 points for implementing priority scheduling [preemptive]
+
+
+For this testing file, you should be getting the following output:
+--- FCFS ---
+Average Turnaround Time: 1098.400
+Average Waiting Time: 1075.100
+Throughput: 0.043
+
+
+--- SJFP ---
+Average Turnaround Time: 692.190
+Average Waiting Time: 668.890
+Throughput: 0.043
+
+
+--- Priority ---
+Average Turnaround Time: 1036.090
+Average Waiting Time: 1012.790
+Throughput: 0.043
+Note: Your Priority and SJFP output *might* vary slightly due to how you're breaking ties between equal priorities and remaining burst times respectively. 
+You should be building a Gantt chart on paper with simple examples (~5 processes), doing the math by hand, then verifying that your code produces the same results before you try to run your code on 100+ process inputs.
+ 
+Here's an easy sample input for FCFS to verify by hand:
+1,0,3,5
+2,2,4,2
+3,3,1,3
+4,8,3,4
+5,10,4,1
+You should be getting this output:
+--- FCFS ---
+Average Turnaround Time: 4.200
+Average Waiting Time: 1.200
+Throughput: 0.333
+
+
+--- SJFP ---
+Average Turnaround Time: 3.600
+Average Waiting Time: 0.600
+Throughput: 0.333
+
+
+--- Priority ---
+Average Turnaround Time: 5.400
+Average Waiting Time: 2.400
+Throughput: 0.333
