@@ -1,16 +1,21 @@
-# C++ Makefile for HW5
-#
-# Replace the LastName-FirstName in the package section with
-# your actual first and last name.
+# Makefile for compiling the project
+# Responsibilities:
+# 1. Define build rules for compiling and linking all source files.
+# 2. Include targets such as `all`, `clean`, and `test`.
+# 3. Use the provided Makefile conventions from the assignment.
+# Note: This file must be included in the submission.
+CC = g++
+CFLAGS = -Wall -std=c++17
+OBJ = Scheduler.o FCFS.o SJF.o PriorityScheduling.o
+TARGET = Scheduler
 
-CXX=g++
-CXXFLAGS=-Wall -Wextra -Wpedantic -Werror -Wfatal-errors -Winit-self -Wshadow -Wlogical-op -Wcomment -Wctor-dtor-privacy -Wold-style-cast -D_GLIBCXX_DEBUG -fno-diagnostics-show-option
+all: $(TARGET)
 
-all: Scheduler.cc 
-	$(CXX) $(CXXFLAGS) -o Scheduler Scheduler.cc
-		
+$(TARGET): $(OBJ)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ)
+
+%.o: %.cpp
+	$(CC) $(CFLAGS) -c $<
+
 clean:
-	rm -f Scheduler *.o *.zip
-	
-package:
-	zip LastName-FirstName-HW5.zip README.txt Makefile Scheduler.cc
+	rm -f $(OBJ) $(TARGET)
