@@ -1,10 +1,3 @@
-/*
-** Header file for defining a factory class to create scheduling algorithm objects.
-** Responsibilities:
-** 1. Provide a method to instantiate the correct scheduling algorithm based on user input.
-** 2. Abstract the creation logic for different scheduling algorithm objects.
-*/
-
 #ifndef SCHEDULER_ALGORITHM_FACTORY_H
 #define SCHEDULER_ALGORITHM_FACTORY_H
 
